@@ -1,0 +1,2 @@
+Placeholder file to create folder structure.
+Insert texture files inside this folder: wall.xpm, floor.xpm, player.xpm, exit.xpm, collect.xpm
