@@ -1,15 +1,16 @@
-#******************************************************************************#
-#****************************** VARIABLES *************************************#
-#******************************************************************************#
+# **************************************************************************** #
+# ***************************** VARIABLES: *********************************** #
+# **************************************************************************** #
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = so_long
 
-SRC = src/so_long.c src/error_utils.c src/free_utils.c src/map_utils.c \
-	src/format_validation_utils.c src/path_validation_utils.c \
+SRC = src/so_long.c \
+	src/error_utils.c src/free_utils.c \
+	src/map_utils.c src/format_validation_utils.c src/path_validation_utils.c \
+	src/movement_utils.c \
 	src/game_init.c src/game_loop.c src/game_render.c \
-	src/movement_utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -24,9 +25,9 @@ MLX_TGZ = minilibx-linux.tgz
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 MLX_GIT_JUNK = $(MLX_DIR)/.git $(MLX_DIR)/.github $(MLX_DIR)/.gitignore
 
-#******************************************************************************#
-#******************************	RULES *****************************************#
-#******************************************************************************#
+# **************************************************************************** #
+# *****************************	RULES: *************************************** #
+# **************************************************************************** #
 all: $(NAME)
 
 $(LIBFT):
