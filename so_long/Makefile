@@ -1,49 +1,47 @@
 #******************************************************#
-#			VARIABLES                      #
+#						VARIABLES                      #
 #******************************************************#
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = so_long
 
-SRC = src/utils.c
-SRC_BONUS = src/utils.c
+SRC = src/so_long.c src/error_utils.c src/free_utils.c src/map_utils.c \
+	src/format_validation_utils.c src/path_validation_utils.c \
+	src/game_init.c src/game_loop.c src/game_render.c \
+	src/movement_utils.c
 
-SRC_USED = $(SRC)
+OBJ = $(SRC:.c=.o)
 
-ifeq ($(BONUS), 1)
-SRC_USED = $(SRC_BONUS)
-endif
-
-OBJ_USED = $(SRC_USED:.c=.o)
-
-OBJ_ALL = $(SRC:.c=.o) $(SRC_BONUS:.c=.o)
-
-INCLUDE = -Iinclude -Ilibft
+INCLUDE = -Iinclude -Ilibft -Iminilibx-linux
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
+
+MLX_DIR = minilibx-linux
+MLX = $(MLX_DIR)/libmlx_Linux.a
 
 #******************************************************#
 #                       RULES                          #
 #******************************************************#
 all: $(NAME)
 
-bonus:
-	$(MAKE) BONUS=1 all
-
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR) bonus
 
-$(NAME): $(OBJ_USED) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ_USED) $(LIBFT) -o $(NAME)
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_ALL)
+	rm -f $(OBJ)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
@@ -51,4 +49,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
