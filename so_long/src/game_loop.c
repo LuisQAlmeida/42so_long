@@ -40,8 +40,11 @@ static void	move_player(t_game *game, int dir_i, int dir_j)
 	render_game(game);
 }
 
-int	handle_key(int key, t_game *game)
+int	handle_key(int key, void *param)
 {
+	t_game	*game;
+
+	game = (t_game *)param;
 	if (key == 65307)
 		handle_close(game);
 	else if (key == 'w' || key == 119 || key == 65362)

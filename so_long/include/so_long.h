@@ -79,7 +79,7 @@ void	validate_map_format(t_map *map);
 void	validate_map_path(t_map *map);
 
 /******************* MLX GAME UTILS: ******************************************/
-int		handle_key(int key, t_game *game);
+int		handle_key(int key, void *param);
 int		handle_close(t_game *game);
 void	init_game(t_game *game, t_map *map);
 void	run_game(t_game *game);
