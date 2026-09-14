@@ -13,6 +13,7 @@ SRC = src/so_long.c \
 	src/game_init.c src/game_loop.c src/game_render.c \
 
 OBJ = $(SRC:.c=.o)
+HEADER = include/so_long.h
 
 LIBFT_REPO = external/libft
 LIBFT_DIR = $(LIBFT_REPO)/libft
@@ -39,7 +40,7 @@ $(MLX):
 	fi
 	$(MAKE) -C $(MLX_DIR)
 
-$(OBJ): $(MLX)
+$(OBJ): $(HEADER) $(MLX)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
