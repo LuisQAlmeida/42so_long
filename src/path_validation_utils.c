@@ -7,7 +7,10 @@ static char	**get_grid_copy(t_map *map)
 
 	copy = (char **)malloc(sizeof(char *) * map->height);
 	if (!copy)
+	{
+		free_map(map);
 		error_exit(ERR_MALLOC);
+	}
 	j = 0;
 	while (j < map->height)
 	{
@@ -15,6 +18,7 @@ static char	**get_grid_copy(t_map *map)
 		if (!copy[j])
 		{
 			free_grid(copy, j);
+			free_map(map);
 			error_exit(ERR_MALLOC);
 		}
 		j++;
