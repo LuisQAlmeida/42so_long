@@ -14,10 +14,11 @@ SRC = src/so_long.c \
 
 OBJ = $(SRC:.c=.o)
 
-INCLUDE = -Iinclude -Ilibft -Iminilibx-linux
-
-LIBFT_DIR = libft
+LIBFT_REPO = external/libft
+LIBFT_DIR = $(LIBFT_REPO)/libft
 LIBFT = $(LIBFT_DIR)/libft.a
+
+INCLUDE = -Iinclude -I$(LIBFT_DIR) -Iminilibx-linux
 
 MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx_Linux.a
