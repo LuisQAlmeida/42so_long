@@ -21,11 +21,7 @@ int	can_exit(t_game *game, char cell)
 {
 	if (cell != 'E')
 		return (0);
-	if (game->c_count == game->c_total)
-	{
-		game->mv_count++;
-		ft_printf("Current move count: %d moves.\n", game->mv_count);
-		handle_close(game);
-	}
-	return (0);
+	if (game->c_count != game->c_total)
+		return (0);
+	return (1);
 }
