@@ -1,12 +1,15 @@
 #include "so_long.h"
 
+#define KEY_ESC 65307
+#define KEY_LEFT 65361
+#define KEY_UP 65362
+#define KEY_RIGHT 65363
+#define KEY_DOWN 65364
+#define EVENT_DESTROY 17
+
 int	handle_close(t_game *game)
 {
-	mlx_destroy_image(game->mlx, game->w.ptr);
-	mlx_destroy_image(game->mlx, game->e.ptr);
-	mlx_destroy_image(game->mlx, game->p.ptr);
-	mlx_destroy_image(game->mlx, game->c.ptr);
-	mlx_destroy_image(game->mlx, game->f.ptr);
+	destroy_images(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -32,7 +35,12 @@ static void	move_player(t_game *game, int dir_i, int dir_j)
 	if (cell == 'C')
 		get_collectible(game, nxt_i, nxt_j);
 	if (can_exit(game, cell))
+	{
+		game->mv_count++;
+		ft_printf("Current move count: %d moves.\n", game->mv_count);
+		handle_close(game);
 		return ;
+	}
 	game->p_i = nxt_i;
 	game->p_j = nxt_j;
 	game->mv_count++;
@@ -45,15 +53,15 @@ int	handle_key(int key, void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	if (key == 65307)
+	if (key == KEY_ESC)
 		handle_close(game);
-	else if (key == 'w' || key == 119 || key == 65362)
+	else if (key == 'w' || key == KEY_UP)
 		move_player(game, 0, -1);
-	else if (key == 'a' || key == 97 || key == 65361)
+	else if (key == 'a' || key == KEY_LEFT)
 		move_player(game, -1, 0);
-	else if (key == 's' || key == 115 || key == 65364)
+	else if (key == 's' || key == KEY_DOWN)
 		move_player(game, 0, 1);
-	else if (key == 'd' || key == 100 || key == 65363)
+	else if (key == 'd' || key == KEY_RIGHT)
 		move_player(game, 1, 0);
 	return (0);
 }
@@ -62,6 +70,6 @@ void	run_game(t_game *game)
 {
 	render_game(game);
 	mlx_key_hook(game->win, handle_key, game);
-	mlx_hook(game->win, 17, 0, handle_close, game);
+	mlx_hook(game->win, EVENT_DESTROY, 0, handle_close, game);
 	mlx_loop(game->mlx);
 }
