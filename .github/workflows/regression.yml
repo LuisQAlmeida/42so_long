@@ -1,0 +1,48 @@
+name: Regression
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    name: Regression (${{ matrix.compiler }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler:
+          - cc
+          - clang
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            gcc \
+            clang \
+            make \
+            libx11-dev \
+            libxext-dev \
+            libbsd-dev
+
+      - name: Run regression suite
+        env:
+          CC: ${{ matrix.compiler }}
+        run: ./tests/run_regression.sh
