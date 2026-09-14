@@ -27,6 +27,7 @@ static t_list	*get_rows(int fd)
 		{
 			free(content);
 			free_rows(rows, 1);
+			close(fd);
 			error_exit(ERR_MALLOC);
 		}
 		ft_lstadd_back(&rows, row);
