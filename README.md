@@ -2,11 +2,11 @@
 
 [![Regression](https://github.com/LuisQAlmeida/42so_long/actions/workflows/regression.yml/badge.svg)](https://github.com/LuisQAlmeida/42so_long/actions/workflows/regression.yml)
 
+> Part of my [42 Common Core portfolio](https://github.com/LuisQAlmeida/42Portfolio).
+
 A small tile-based 2D game written in C with MiniLibX, focused on map parsing,
 validation, path reachability, event-driven rendering, and explicit resource
 ownership.
-
-> Part of my [42 Common Core portfolio](https://github.com/LuisQAlmeida/42Portfolio).
 
 > **42 Common Core:** 100/100 · Subject v5.0 · [Academic record & evaluation](docs/academic/README.md)
 
