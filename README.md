@@ -8,29 +8,25 @@ ownership.
 
 > Part of my [42 Common Core portfolio](https://github.com/LuisQAlmeida/42Portfolio).
 
-## Academic Context
+> **42 Common Core:** 100/100 · Subject v5.0 · [Academic record & evaluation](docs/academic/README.md)
 
-| | |
-| --- | --- |
-| **Curriculum** | 42 Common Core |
-| **Project** | `so_long` |
-| **Subject version** | 5.0 |
-| **Final evaluation** | **100/100** |
-| **Project type** | Individual |
+## Table of Contents
 
-<img src="docs/assets/42-evaluation.png" alt="42 so_long evaluation: 100/100" width="180">
+- [Overview](#overview)
+- [Controls](#controls)
+- [Validation Pipeline](#validation-pipeline)
+- [Architecture](#architecture)
+- [Dependencies](#dependencies)
+- [Build](#build)
+- [Running](#running)
+- [Testing](#testing)
+- [Continuous Integration](#continuous-integration)
+- [Quality and Robustness](#quality-and-robustness)
+- [Project Structure](#project-structure)
+- [AI Usage](#ai-usage)
+- [License](#license)
 
-The repository originated as my implementation of the 42 `so_long` project.
-The current `main` branch is a maintained portfolio edition containing
-post-evaluation engineering, testing, dependency, and documentation work.
 
-The annotated tag `portfolio-baseline-2026-09` preserves the repository state
-immediately before the professional portfolio modernization. It is not
-necessarily the exact academic evaluation commit, because some maintenance
-work had already taken place before that modernization began.
-
-See [Academic Project Context](docs/academic/README.md) for the detailed
-academic record and provenance.
 
 ## Overview
 
@@ -346,20 +342,6 @@ first-party heap allocations remaining and no reported memory errors.
 └── README.md
 ```
 
-## Academic Project vs Maintained Portfolio
-
-The repository now has two useful historical reference points:
-
-- **Academic project:** the original 42 implementation and its 100/100
-  evaluation;
-- **Maintained portfolio:** the current `main` branch, including later
-  engineering and documentation work.
-
-The immutable `portfolio-baseline-2026-09` tag marks the state immediately
-before the structured professional modernization began.
-
-This separation keeps the academic result traceable while allowing the
-repository to evolve as maintained engineering work.
 
 ## AI Usage
 
